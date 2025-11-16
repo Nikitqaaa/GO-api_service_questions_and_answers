@@ -1,13 +1,4 @@
 services:
-  db:
-    image: postgres:15-alpine
-    environment:
-      - CONFIG_PATH=./config/config.yaml
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
   app:
     build: .
     ports:
@@ -15,6 +6,26 @@ services:
     environment:
       - CONFIG_PATH=./config/config.yaml
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+    restart: on-failure
+
+  db:
+    image: postgres:15-alpine
+    environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+        - POSTGRES_DB=qna
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d qna" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
 volumes:
   postgres_data:
