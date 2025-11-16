@@ -23,6 +23,15 @@ func NewQuestionHandler(service services.QuestionService) *QuestionHandler {
 	}
 }
 
+// GetQuestions godoc
+// @Summary Get all questions
+// @Description Get a list of all questions
+// @Tags questions
+// @Accept json
+// @Produce json
+// @Success 200 {array} models.Question
+// @Failure 500 {object} map[string]string
+// @Router /api/questions [get]
 func (h *QuestionHandler) GetQuestions(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
@@ -44,6 +53,17 @@ func (h *QuestionHandler) GetQuestions(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// CreateQuestion godoc
+// @Summary Create a new question
+// @Description Create a new question
+// @Tags questions
+// @Accept json
+// @Produce json
+// @Param question body models.Question true "Question object"
+// @Success 201 {object} models.Question
+// @Failure 400 {object} map[string]string
+// @Failure 500 {object} map[string]string
+// @Router /api/questions [post]
 func (h *QuestionHandler) CreateQuestion(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
@@ -83,6 +103,18 @@ func (h *QuestionHandler) CreateQuestion(w http.ResponseWriter, r *http.Request)
 	}
 }
 
+// GetQuestion godoc
+// @Summary Get question by ID
+// @Description Get a specific question by its ID
+// @Tags questions
+// @Accept json
+// @Produce json
+// @Param id path int true "Question ID"
+// @Success 200 {object} models.Question
+// @Failure 400 {object} map[string]string
+// @Failure 404 {object} map[string]string
+// @Failure 500 {object} map[string]string
+// @Router /api/questions/{id} [get]
 func (h *QuestionHandler) GetQuestion(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
@@ -113,6 +145,18 @@ func (h *QuestionHandler) GetQuestion(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// DeleteQuestion godoc
+// @Summary Delete a question
+// @Description Delete a specific question by its ID
+// @Tags questions
+// @Accept json
+// @Produce json
+// @Param id path int true "Question ID"
+// @Success 204 "No Content"
+// @Failure 400 {object} map[string]string
+// @Failure 404 {object} map[string]string
+// @Failure 500 {object} map[string]string
+// @Router /api/questions/{id} [delete]
 func (h *QuestionHandler) DeleteQuestion(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodDelete {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)

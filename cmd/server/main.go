@@ -1,5 +1,12 @@
 package main
 
+// @title Questions and Answers API
+// @version 1.0
+// @description API Service for managing questions and answers
+
+// @host localhost:8080
+// @BasePath /api
+// @query.collection.format multi
 import (
 	"api_service_questions_and_answers/internal/config"
 	"api_service_questions_and_answers/internal/database"
@@ -9,6 +16,10 @@ import (
 	"api_service_questions_and_answers/internal/services"
 	"log"
 	"net/http"
+
+	_ "api_service_questions_and_answers/docs"
+
+	"github.com/swaggo/http-swagger"
 )
 
 func main() {
@@ -29,10 +40,15 @@ func main() {
 
 	apiRoute := route.SetupQuestionRoutes(questionHandler, answerHandler)
 
+	mux := http.NewServeMux()
+	mux.Handle("/swagger/", httpSwagger.WrapHandler)
+	mux.Handle("/", apiRoute)
+
 	serverAddr := cfg.Server.Address + ":" + cfg.Server.Port
 	log.Printf("Server starting on %s", serverAddr)
+	log.Printf("Swagger documentation available at http://localhost:8080/swagger/index.html")
 
-	if err := http.ListenAndServe(serverAddr, apiRoute); err != nil {
+	if err := http.ListenAndServe(serverAddr, mux); err != nil {
 		log.Fatal("Server failed to start:", err)
 	}
 }

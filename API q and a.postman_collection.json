@@ -36,18 +36,19 @@
 							]
 						},
 						"url": {
-							"raw": "{{HOST}}/questions/:id",
+							"raw": "{{HOST}}/api/questions/:id",
 							"host": [
 								"{{HOST}}"
 							],
 							"path": [
+								"api",
 								"questions",
 								":id"
 							],
 							"variable": [
 								{
 									"key": "id",
-									"value": "2"
+									"value": "1"
 								}
 							]
 						}
@@ -73,11 +74,12 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{HOST}}/questions",
+							"raw": "{{HOST}}/api/questions",
 							"host": [
 								"{{HOST}}"
 							],
 							"path": [
+								"api",
 								"questions"
 							]
 						}
@@ -99,11 +101,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}/questions",
+							"raw": "{{HOST}}/api/questions",
 							"host": [
 								"{{HOST}}"
 							],
 							"path": [
+								"api",
 								"questions"
 							]
 						}
@@ -133,11 +136,12 @@
 							]
 						},
 						"url": {
-							"raw": "{{HOST}}/questions/:id",
+							"raw": "{{HOST}}/api/questions/:id",
 							"host": [
 								"{{HOST}}"
 							],
 							"path": [
+								"api",
 								"questions",
 								":id"
 							],
@@ -175,11 +179,12 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{HOST}}/answers/:id",
+							"raw": "{{HOST}}/api/answers/:id",
 							"host": [
 								"{{HOST}}"
 							],
 							"path": [
+								"api",
 								"answers",
 								":id"
 							],
@@ -199,15 +204,21 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "formdata",
-							"formdata": []
+							"mode": "raw",
+							"raw": "{\n    \"text\" : \"бла бла бла\",\n    \"user_id\": \"f47ac10b-58cc-4372-a567-0e02b2c3d479\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
-							"raw": "{{HOST}}/questions/:id/answers",
+							"raw": "{{HOST}}/api/questions/:id/answers",
 							"host": [
 								"{{HOST}}"
 							],
 							"path": [
+								"api",
 								"questions",
 								":id",
 								"answers"
@@ -238,11 +249,12 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{HOST}}/answers/:id",
+							"raw": "{{HOST}}/api/answers/:id",
 							"host": [
 								"{{HOST}}"
 							],
 							"path": [
+								"api",
 								"answers",
 								":id"
 							],

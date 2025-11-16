@@ -23,6 +23,18 @@ func NewAnswerHandler(service services.AnswerService) *AnswerHandler {
 	}
 }
 
+// GetAnswer godoc
+// @Summary Get answer by ID
+// @Description Get a specific answer by its ID
+// @Tags answers
+// @Accept json
+// @Produce json
+// @Param id path int true "Answer ID"
+// @Success 200 {object} models.Answer
+// @Failure 400 {object} map[string]string
+// @Failure 404 {object} map[string]string
+// @Failure 500 {object} map[string]string
+// @Router /api/answers/{id} [get]
 func (h *AnswerHandler) GetAnswer(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
@@ -53,6 +65,19 @@ func (h *AnswerHandler) GetAnswer(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// CreateAnswer godoc
+// @Summary Create a new answer for a question
+// @Description Create a new answer for a specific question
+// @Tags answers
+// @Accept json
+// @Produce json
+// @Param question_id path int true "Question ID"
+// @Param answer body models.Answer true "Answer object"
+// @Success 201 {object} models.Answer
+// @Failure 400 {object} map[string]string
+// @Failure 404 {object} map[string]string
+// @Failure 500 {object} map[string]string
+// @Router /api/questions/{question_id}/answers [post]
 func (h *AnswerHandler) CreateAnswer(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
@@ -104,6 +129,18 @@ func (h *AnswerHandler) CreateAnswer(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// DeleteAnswer godoc
+// @Summary Delete an answer
+// @Description Delete a specific answer by its ID
+// @Tags answers
+// @Accept json
+// @Produce json
+// @Param id path int true "Answer ID"
+// @Success 204 "No Content"
+// @Failure 400 {object} map[string]string
+// @Failure 404 {object} map[string]string
+// @Failure 500 {object} map[string]string
+// @Router /api/answers/{id} [delete]
 func (h *AnswerHandler) DeleteAnswer(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodDelete {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
