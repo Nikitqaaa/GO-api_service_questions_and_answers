@@ -2,19 +2,20 @@
 REST API сервис для вопросов и ответов, построенный на Go с использованием PostgreSQL.
 
 ### Технологии:
-- Backend: Go 1.25
+- Backend: Go 1.25 (net/http)
 - Database: PostgreSQL
 - ORM: GORM
 - Router: Chi
 - Containerization: Docker & Docker Compose
 - Migrations: Goose
 - Swagger: http-swagger
+- Testing: testify
 
 ### Архитектура:
 - models - сущности/модели
 - repositories - работа с базой данных
 - services - бизнес-логика
-- handlers - HTTP обработчики
+- handlers - HTTP обработчики (тесты)
 - config - конфигурация
 - database - подключение к БД
 - route - маршруты
